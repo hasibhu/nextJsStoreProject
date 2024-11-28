@@ -1,4 +1,4 @@
-This is a [Next.js] project bootstrapped with Typescript, Redux, Prisma, Zod, Shadcn, Axios, and so on..
+### This is a [Next.js] project bootstrapped with Typescript, Redux, Prisma, Zod, Shadcn, Axios, and so on..
 
 ## Getting Started
 
