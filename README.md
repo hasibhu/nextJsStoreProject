@@ -1,5 +1,8 @@
-### This is a [Next.js] project bootstrapped with Typescript, Redux, Prisma, Zod, Shadcn, Axios, and so on..
+## This is a [Next.js] project bootstrapped with Typescript, Redux, Prisma, Zod, Shadcn, Axios, and so on..
 
+
+#### Shadcn components list: 
+Breadcrumb, card, carousel, button, toast, skeleton, table, popover, dropdown-menu, label, input, select, tetxArea, checkbox
 ## Getting Started
 
 First, run the development server:
