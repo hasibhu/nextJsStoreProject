@@ -3,9 +3,12 @@ import { Input } from '../ui/input';
 
 const NavSearch = () => {
     return (
-        <div>
-            <Input></Input>
-        </div>
+        
+        <Input type='search'
+            placeholder='Serach produts...'
+            className='max-w-xs dark:bg-muted'
+        ></Input>
+        
     );
 };
 
