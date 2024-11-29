@@ -1,42 +1,49 @@
-'use client'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
+
+'use client';
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu';
 import { useTheme } from 'next-themes';
 import { Button } from '../ui/button';
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
+import { useEffect, useState } from 'react';
 
 const DarkMode = () => {
+  const { setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-    const { setTheme } = useTheme();
+  // Ensure the component is mounted on the client
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
+  if (!mounted || !resolvedTheme) return null; // Prevent server-client mismatch
 
-    return (
-        <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-                <Button variant='outline' size='icon'>
-                    <SunIcon className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0'></SunIcon>
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="icon" aria-label="Toggle Theme">
+          {/* Render only one icon based on the current theme */}
+          {resolvedTheme === 'dark' ? (
+            <MoonIcon className="h-[1.2rem] w-[1.2rem] transition-all" />
+          ) : (
+            <SunIcon className="h-[1.2rem] w-[1.2rem] transition-all" />
+          )}
+          <span className="sr-only">Toggle Theme</span>
+        </Button>
+      </DropdownMenuTrigger>
 
-                    <MoonIcon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100'></MoonIcon>
-
-                    <span className='sr-only'>Toggle Theme</span>
-                </Button>
-            </DropdownMenuTrigger>
-
-            <DropdownMenuContent align='end'>
-                <DropdownMenuItem onClick={()=> setTheme('light')}>
-                    Light
-                </DropdownMenuItem>
-
-                <DropdownMenuItem onClick={() => setTheme('dark')}>
-                    Dark
-                </DropdownMenuItem>
-
-                <DropdownMenuItem onClick={() => setTheme('system')}>
-                    Sysytem
-                </DropdownMenuItem>
-            </DropdownMenuContent>
-
-        </DropdownMenu>
-    );
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('system')}>System</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
 };
 
 export default DarkMode;
