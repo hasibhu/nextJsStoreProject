@@ -14,4 +14,10 @@ generator client {
 model TestProfile{
   id String @id @default(uuid())
   name String
+  company String
+  description String
+  featured String
+  image String
+  price Int
+  createdAt DateTime @default(now())
 }
